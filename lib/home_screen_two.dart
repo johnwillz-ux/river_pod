@@ -9,7 +9,6 @@ class HomeScreenTwo extends ConsumerWidget {
   //   ref.watch(newNameProvider.notifier).update((state) => value);
   // }
 
-
   void onSubmit(WidgetRef ref, String value) {
     ref.read(newNameStateProvider.notifier).updateName(value);
   }
@@ -35,8 +34,9 @@ class HomeScreenTwo extends ConsumerWidget {
                         user.name,
                         style: const TextStyle(fontSize: 30),
                       ),
-
-                      const SizedBox(width: 20,),
+                      const SizedBox(
+                        width: 20,
+                      ),
                       Text(
                         user.email.toString(),
                         style: const TextStyle(fontSize: 30),

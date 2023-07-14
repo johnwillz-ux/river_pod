@@ -11,30 +11,49 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(newNameProvider) ?? "No Data";
+    // final name = ref.watch(newNameProvider) ?? "No Data";
 
-    return Scaffold(
-      body: Container(
-        color: Colors.yellow,
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(fontSize: 30),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  onSubmitted: (value) => onSubmit(ref, value),
-                ),
-              ],
+    final user = ref.watch(fetchUserProvider);
+
+    return user.when(data: (data) {
+      return Scaffold(
+        body: Container(
+          color: Colors.yellow,
+          child: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  Text(
+                    data.name,
+                    style: const TextStyle(fontSize: 30),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    data.email,
+                    style: const TextStyle(fontSize: 30),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    onSubmitted: (value) => onSubmit(ref, value),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }, error: (error, tackTrace) {
+      return Center(
+        child: Text(error.toString()),
+      );
+    }, loading: () {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    });
   }
 }
