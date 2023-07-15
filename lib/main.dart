@@ -11,9 +11,11 @@ import 'package:river_pod/user_model.dart';
 //StateNotifier and StateNotifierProvider
 //ChangeNotifierProvider
 //FutureProvider
+//StreamProvider
 
 final fetchUserProvider = FutureProvider((ref) async {
-  return UserRepo().getUserDataOnline();
+  final userRepo = ref.watch(userRepoProvider);
+  return userRepo.getUserDataOnline();
 });
 
 final nameProvider = Provider<String>((ref) => "Johnwillz");
