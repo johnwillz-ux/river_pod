@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_pod/fetch_user_online.dart';
 import 'package:river_pod/home_screen.dart';
-import 'package:river_pod/home_screen_two.dart';
 import 'package:river_pod/user_model.dart';
 
 //Providers
